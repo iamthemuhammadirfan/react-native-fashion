@@ -1,5 +1,6 @@
 import React from "react";
 import { Dimensions, Image, StyleSheet, View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const { width } = Dimensions.get("window");
 const ASPECT_RATIO = 750 / 1125;
@@ -27,7 +28,13 @@ export default function AppAuthContainer({ children, footer }) {
             top: -height * 0.61,
           }}
         />
-        <View style={styles.overlay}>{children}</View>
+        <View style={styles.overlay}>
+          <KeyboardAwareScrollView
+            showsVerticalScrollIndicator={false}
+            enableOnAndroid={true}>
+            {children}
+          </KeyboardAwareScrollView>
+        </View>
       </View>
       {footer}
     </View>

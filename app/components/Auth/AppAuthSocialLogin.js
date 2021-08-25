@@ -4,32 +4,18 @@ import { StyleSheet, Text, View } from "react-native";
 import Google from "Icons/Google";
 import Facebook from "Icons/Facebook";
 import Apple from "Icons/Apple";
-import AppText from "components/AppText";
-import AppButton from "components/AppButton";
 
 export default function AppAuthSocialLogin() {
   return (
-    <View>
-      <View style={styles.container}>
-        <View style={styles.icon}>
-          <Facebook />
-        </View>
-        <View style={styles.icon}>
-          <Google />
-        </View>
-        <View style={styles.icon}>
-          <Apple />
-        </View>
+    <View style={styles.container}>
+      <View style={styles.icon}>
+        <Facebook />
       </View>
-      <View style={{ alignItems: "center" }}>
-        <AppButton variant="transparent">
-          <View style={{ flexDirection: "row" }}>
-            <AppText style={{ color: "white" }}>Don’t have an account?</AppText>
-            <AppText style={{ color: "#2CB9B0", marginLeft: 8 }}>
-              Sign Up here
-            </AppText>
-          </View>
-        </AppButton>
+      <View style={styles.icon}>
+        <Google />
+      </View>
+      <View style={styles.icon}>
+        <Apple />
       </View>
     </View>
   );

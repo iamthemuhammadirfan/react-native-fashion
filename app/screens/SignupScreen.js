@@ -11,34 +11,38 @@ import configs from "configs";
 import AppCheckbox from "components/AppCheckbox";
 import AppButton from "components/AppButton";
 
-const loginSchema = Yup.object().shape({
+const signupSchema = Yup.object().shape({
   email: Yup.string().email("Invalid").required("Required").label("Email"),
   password: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required")
     .label("Password"),
+  confirmPassword: Yup.string()
+    .equals([Yup.ref("password")], "Password's not match")
+    .required(),
 });
 
-export default function LoginScreen({ navigation }) {
+export default function SignupScreen({ navigation }) {
   const password = useRef(null);
+  const confirmPassword = useRef(null);
   return (
     <AppAuthContainer
       footer={
         <AppAuthFooter
-          title="Don’t have an account? "
-          action="Sign Up here"
-          onPress={() => navigation.navigate("SignupScreen")}
+          title="Already have an account? "
+          action="Login here"
+          onPress={() => navigation.navigate("LoginScreen")}
         />
       }>
       <View style={styles.content}>
-        <AppText style={styles.title}>Welcome Back</AppText>
+        <AppText style={styles.title}>Create account</AppText>
         <AppText style={styles.description}>
-          Use your credentials below and login to your account
+          Let’s us know what your name, email, and your password
         </AppText>
         <Formik
-          initialValues={{ email: "", password: "", remember: false }}
-          validationSchema={loginSchema}
+          initialValues={{ email: "", password: "", confirmPassword: "" }}
+          validationSchema={signupSchema}
           onSubmit={values => console.log(values)}>
           {({
             handleChange,
@@ -47,7 +51,6 @@ export default function LoginScreen({ navigation }) {
             values,
             errors,
             touched,
-            setFieldValue,
           }) => (
             <View>
               <View style={styles.input}>
@@ -76,30 +79,33 @@ export default function LoginScreen({ navigation }) {
                   touched={touched["password"]}
                   autoCompleteType="password"
                   autoCapitalize="none"
+                  returnKeyType="next"
+                  returnKeyLabel="next"
+                  onSubmitEditing={() => confirmPassword.current?.focus()}
+                  secureTextEntry
+                />
+              </View>
+              <View style={styles.input}>
+                <AppAuthTextInput
+                  ref={confirmPassword}
+                  icon="lock"
+                  placeholder="Confirm Your Password"
+                  onChangeText={handleChange("confirmPassword")}
+                  onBlur={handleBlur("confirmPassword")}
+                  error={errors["confirmPassword"]}
+                  touched={touched["confirmPassword"]}
+                  autoCompleteType="password"
+                  autoCapitalize="none"
                   returnKeyType="go"
                   returnKeyLabel="go"
                   onSubmitEditing={() => handleSubmit()}
                   secureTextEntry
                 />
               </View>
-              <View style={styles.checkbox}>
-                <AppCheckbox
-                  label="Remember me"
-                  checked={values["remember"]}
-                  onChange={() =>
-                    setFieldValue("remember", !values["remember"])
-                  }
-                />
-                <AppButton variant="transparent">
-                  <AppText style={{ color: configs.colors.primary }}>
-                    Forgot Password?
-                  </AppText>
-                </AppButton>
-              </View>
               <View style={styles.button}>
                 <AppButton
                   variant="primary"
-                  label="Log into your account"
+                  label="Create your account"
                   onPress={handleSubmit}
                 />
               </View>
@@ -119,11 +125,6 @@ const styles = StyleSheet.create({
   content: {
     padding: 24,
   },
-  checkbox: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
   description: {
     textAlign: "center",
     fontSize: 16,
@@ -136,8 +137,9 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 28,
+    lineHeight: 36,
     textAlign: "center",
     color: "#0C0D34",
-    marginBottom: 24,
+    marginBottom: configs.spacing.m,
   },
 });

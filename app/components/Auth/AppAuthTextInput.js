@@ -1,51 +1,55 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 
 import configs from "configs";
 
-export default function AppAuthTextInput({ icon, error, touched, ...rest }) {
-  const borderColor = !touched
-    ? configs.colors.inputPristine
-    : error
-    ? configs.colors.danger
-    : configs.colors.primary;
+const AppAuthTextInput = forwardRef(
+  ({ icon, error, touched, ...rest }, ref) => {
+    const borderColor = !touched
+      ? configs.colors.inputPristine
+      : error
+      ? configs.colors.danger
+      : configs.colors.primary;
 
-  return (
-    <View style={[styles.container, { borderColor }]}>
-      <View style={styles.iconContainer}>
-        <Icon name={icon} size={16} color={borderColor} />
-      </View>
-      <View style={styles.input}>
-        <TextInput
-          underlineColorAndroid="transparent"
-          placeholderTextColor={borderColor}
-          {...rest}
-        />
-      </View>
-      {touched && (
-        <View
-          style={[
-            styles.icon,
-            {
-              backgroundColor: !error
-                ? configs.colors.primary
-                : configs.colors.danger,
-            },
-          ]}>
-          <Icon
-            name={!error ? "check" : "x"}
-            size={16}
-            color={configs.colors.white}
+    return (
+      <View style={[styles.container, { borderColor }]}>
+        <View style={styles.iconContainer}>
+          <Icon name={icon} size={16} color={borderColor} />
+        </View>
+        <View style={styles.input}>
+          <TextInput
+            underlineColorAndroid="transparent"
+            placeholderTextColor={borderColor}
+            {...rest}
+            ref={ref}
           />
         </View>
-      )}
-    </View>
-  );
-}
+        {touched && (
+          <View
+            style={[
+              styles.icon,
+              {
+                backgroundColor: !error
+                  ? configs.colors.primary
+                  : configs.colors.danger,
+              },
+            ]}>
+            <Icon
+              name={!error ? "check" : "x"}
+              size={16}
+              color={configs.colors.white}
+            />
+          </View>
+        )}
+      </View>
+    );
+  },
+);
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: "white",
     flexDirection: "row",
     alignItems: "center",
     height: 48,
@@ -67,3 +71,5 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+export default AppAuthTextInput;
