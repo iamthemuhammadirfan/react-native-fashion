@@ -12,7 +12,7 @@ const picture = {
 
 const { width, height } = Dimensions.get("window");
 
-export default function WelcomeScreen() {
+export default function WelcomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.slider}>
@@ -31,7 +31,11 @@ export default function WelcomeScreen() {
           <AppText style={styles.description}>
             Login to your account below or signup for an amazing experience
           </AppText>
-          <AppButton variant="primary" label="Have an account? Login" />
+          <AppButton
+            variant="primary"
+            label="Have an account? Login"
+            onPress={() => navigation.navigate("LoginScreen")}
+          />
           <AppButton label="Join us, it's Free" />
           <AppButton variant="transparent" label="Forgot Password?" />
         </View>

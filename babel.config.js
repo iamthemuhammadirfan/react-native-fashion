@@ -14,6 +14,7 @@ module.exports = {
           services: "./app/services",
           layouts: "./app/layouts",
           configs: "./app/configs",
+          icons: "./app/icons",
         },
       },
     ],

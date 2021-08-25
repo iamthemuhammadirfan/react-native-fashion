@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import OnBoardScreen from "screens/OnBoardScreen";
 import WelcomeScreen from "screens/WelcomeScreen";
+import LoginScreen from "screens/LoginScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,7 @@ export default function AuthNavigator() {
       }}>
       <Stack.Screen name="OnBoardScreen" component={OnBoardScreen} />
       <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
+      <Stack.Screen name="LoginScreen" component={LoginScreen} />
     </Stack.Navigator>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import AppText from "./AppText";
 
-export default function AppButton({ label, variant, onPress }) {
+export default function AppButton({ label, variant, onPress, children }) {
   const backgroundColor =
     variant === "primary"
       ? "#2CB9B0"
@@ -14,7 +14,11 @@ export default function AppButton({ label, variant, onPress }) {
     <TouchableOpacity
       style={[styles.container, { backgroundColor }]}
       onPress={onPress}>
-      <AppText style={[styles.label, { color }]}>{label}</AppText>
+      {children ? (
+        children
+      ) : (
+        <AppText style={[styles.label, { color }]}>{label}</AppText>
+      )}
     </TouchableOpacity>
   );
 }
