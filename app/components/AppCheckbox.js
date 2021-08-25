@@ -1,14 +1,13 @@
 import configs from "configs";
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import Icon from "react-native-vector-icons/Feather";
 
 import AppText from "./AppText";
 
-export default function AppCheckbox({ label }) {
-  const [checked, setChecked] = useState(false);
+export default function AppCheckbox({ label, checked, onChange }) {
   return (
-    <TouchableOpacity onPress={() => setChecked(!checked)} activeOpacity={0.7}>
+    <TouchableOpacity onPress={onChange} activeOpacity={0.7}>
       <View style={styles.container}>
         <View
           style={[
