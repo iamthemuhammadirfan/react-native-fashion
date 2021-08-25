@@ -14,7 +14,7 @@ export default function AppOnboardSlideDot({ index, currentIndex }) {
 
   const scale = interpolateNode(currentIndex, {
     inputRange: [index - 1, index, index + 1],
-    outputRange: [1, 1.25, 1],
+    outputRange: [1, 1.35, 1],
     extrapolate: Extrapolate.CLAMP,
   });
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import AppButton from "./AppButton";
-import AppText from "./AppText";
+import AppButton from "components/AppButton";
+import AppText from "components/AppText";
 
 export default function AppOnboardingSubslide({
   subtitle,
