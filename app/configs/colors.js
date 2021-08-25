@@ -1,3 +1,6 @@
 export default {
-  primary: "#12a324",
+  primary: "#2CB9B0",
+  danger: "#FF0058",
+  inputPristine: "#8A8D90",
+  white: "#ffffff",
 };
