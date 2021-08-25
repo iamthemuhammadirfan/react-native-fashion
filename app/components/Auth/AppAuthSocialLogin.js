@@ -4,8 +4,8 @@ import { StyleSheet, Text, View } from "react-native";
 import Google from "Icons/Google";
 import Facebook from "Icons/Facebook";
 import Apple from "Icons/Apple";
-import AppText from "./AppText";
-import AppButton from "./AppButton";
+import AppText from "components/AppText";
+import AppButton from "components/AppButton";
 
 export default function AppAuthSocialLogin() {
   return (
