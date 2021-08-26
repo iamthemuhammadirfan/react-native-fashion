@@ -36,8 +36,15 @@ export default function WelcomeScreen({ navigation }) {
             label="Have an account? Login"
             onPress={() => navigation.navigate("LoginScreen")}
           />
-          <AppButton label="Join us, it's Free" />
-          <AppButton variant="transparent" label="Forgot Password?" />
+          <AppButton
+            label="Join us, it's Free"
+            onPress={() => navigation.navigate("SignupScreen")}
+          />
+          <AppButton
+            variant="transparent"
+            label="Forgot Password?"
+            onPress={() => navigation.navigate("ForgotPasswordScreen")}
+          />
         </View>
       </View>
     </View>

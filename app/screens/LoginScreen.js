@@ -90,7 +90,9 @@ export default function LoginScreen({ navigation }) {
                     setFieldValue("remember", !values["remember"])
                   }
                 />
-                <AppButton variant="transparent">
+                <AppButton
+                  variant="transparent"
+                  onPress={() => navigation.navigate("ForgotPasswordScreen")}>
                   <AppText style={{ color: configs.colors.primary }}>
                     Forgot Password?
                   </AppText>
