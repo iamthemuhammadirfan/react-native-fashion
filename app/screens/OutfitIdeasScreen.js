@@ -6,7 +6,8 @@ import AppHeader from "components/AppHeader";
 import AppBackground from "components/home/AppBackground";
 import AppCard from "components/home/AppCard";
 import { useTransition } from "react-native-redash/lib/module/v1";
-import { interpolateNode, sub } from "react-native-reanimated";
+import { sub } from "react-native-reanimated";
+import AppCategories from "components/home/AppCategories";
 
 const cards = [
   { index: 3, source: require("assets/images/4.png") },
@@ -26,6 +27,7 @@ export default function OutfitIdeasScreen({ navigation }) {
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "shopping-bag", onPress: () => true }}
       />
+      <AppCategories />
       <View style={styles.container}>
         <AppBackground />
         {cards.map(
