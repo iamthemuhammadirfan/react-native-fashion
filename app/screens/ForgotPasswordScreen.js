@@ -23,7 +23,8 @@ export default function ForgotPasswordScreen({ navigation }) {
           action="Try another way"
           onPress={() => Linking.openURL("https://www.google.com")}
         />
-      }>
+      }
+      pattern="2">
       <View style={styles.content}>
         <AppText style={styles.title}>Forgot password?</AppText>
         <AppText style={styles.description}>

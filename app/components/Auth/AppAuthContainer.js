@@ -6,13 +6,19 @@ const { width } = Dimensions.get("window");
 const ASPECT_RATIO = 750 / 1125;
 const height = width * ASPECT_RATIO;
 
-export default function AppAuthContainer({ children, footer }) {
+const assets = [
+  require("assets/images/pattern1.png"),
+  require("assets/images/pattern2.png"),
+  require("assets/images/pattern3.png"),
+];
+
+export default function AppAuthContainer({ children, footer, pattern = 0 }) {
   return (
     <View style={styles.container}>
       <View style={styles.showcase}>
         <View style={styles.imageContainer}>
           <Image
-            source={require("assets/images/pattern1.png")}
+            source={assets[pattern]}
             style={{ width, height, borderBottomLeftRadius: 75 }}
           />
         </View>

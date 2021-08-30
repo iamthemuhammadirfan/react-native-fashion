@@ -34,7 +34,8 @@ export default function SignupScreen({ navigation }) {
           action="Login here"
           onPress={() => navigation.navigate("LoginScreen")}
         />
-      }>
+      }
+      pattern="1">
       <View style={styles.content}>
         <AppText style={styles.title}>Create account</AppText>
         <AppText style={styles.description}>

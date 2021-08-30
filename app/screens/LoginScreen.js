@@ -30,7 +30,8 @@ export default function LoginScreen({ navigation }) {
           action="Sign Up here"
           onPress={() => navigation.navigate("SignupScreen")}
         />
-      }>
+      }
+      pattern="0">
       <View style={styles.content}>
         <AppText style={styles.title}>Welcome Back</AppText>
         <AppText style={styles.description}>
