@@ -12,9 +12,16 @@ export default function AppIconButton({
   return (
     <TouchableOpacity
       activeOpacity={0.8}
-      style={{ backgroundColor, height: size }}
+      style={{
+        backgroundColor,
+        width: size * 1.2,
+        height: size * 1.2,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: size,
+      }}
       onPress={onPress}>
-      <Icon name={icon} color={color} size={size} />
+      <Icon name={icon} color={color} size={size * 0.6} />
     </TouchableOpacity>
   );
 }

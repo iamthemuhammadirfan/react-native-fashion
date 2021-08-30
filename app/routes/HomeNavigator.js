@@ -2,6 +2,7 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import HomeScreen from "screens/HomeScreen";
+import OutfitIdeasScreen from "screens/OutfitIdeasScreen";
 import AppDrawer, { DRAWER_WIDTH } from "layouts/AppDrawer";
 
 const Drawer = createDrawerNavigator();
@@ -9,8 +10,8 @@ const Drawer = createDrawerNavigator();
 export default function HomeNavigator() {
   return (
     <Drawer.Navigator
-      initialRouteName="HomeScreen"
-      drawerContent={AppDrawer}
+      initialRouteName="OutfitIdeasScreen"
+      drawerContent={props => <AppDrawer {...props} />}
       screenOptions={{
         headerShown: false,
         drawerStyle: {
@@ -18,6 +19,7 @@ export default function HomeNavigator() {
         },
       }}>
       <Drawer.Screen name="HomeScreen" component={HomeScreen} />
+      <Drawer.Screen name="OutfitIdeasScreen" component={OutfitIdeasScreen} />
     </Drawer.Navigator>
   );
 }

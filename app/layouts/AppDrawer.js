@@ -1,40 +1,30 @@
 import React from "react";
 import { StyleSheet, Dimensions, View, Image } from "react-native";
-import {
-  useNavigation,
-  DrawerActions,
-  CommonActions,
-} from "@react-navigation/native";
 
 import configs from "configs";
 import AppText from "components/AppText";
 import DrawerItems from "services/DrawerItems";
 import AppDrawerItem from "./AppDrawerItem";
-import AppIconButton from "components/AppIconButton";
+import AppHeader from "components/AppHeader";
 
 const { width } = Dimensions.get("window");
 export const DRAWER_WIDTH = width * 0.8;
 const aspectRatio = 750 / 1125;
 const height = DRAWER_WIDTH * aspectRatio;
 
-export default function AppDrawer() {
+export default function AppDrawer({ navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <View style={styles.headerOverlay}>
-          <AppIconButton
-            icon="x"
-            color={configs.colors.white}
-            size={24}
-            backgroundColor={configs.colors.secondary}
-            onPress={() => console.log(DrawerActions)}
-          />
-          <AppText style={{ color: configs.colors.white }}>MY PROFILE</AppText>
-          <AppIconButton
-            icon="shopping-bag"
-            color={configs.colors.white}
-            size={24}
-            backgroundColor={configs.colors.secondary}
+          <AppHeader
+            title="My Profile"
+            left={{
+              icon: "x",
+              onPress: () => navigation.closeDrawer(),
+            }}
+            right={{ icon: "shopping-bag", onPress: () => true }}
+            dark={true}
           />
         </View>
       </View>
@@ -61,9 +51,8 @@ export default function AppDrawer() {
         <Image
           source={require("assets/images/drawer.png")}
           style={{
-            ...StyleSheet.absoluteFillObject,
-            width: undefined,
-            height: undefined,
+            width: DRAWER_WIDTH,
+            height,
             borderTopLeftRadius: configs.borderRadius.xl,
           }}
         />
@@ -99,10 +88,6 @@ const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: configs.colors.secondary,
     borderBottomRightRadius: configs.borderRadius.xl,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: configs.spacing.m,
-    paddingTop: configs.spacing.s,
   },
   mainContainer: {
     flex: 0.8,

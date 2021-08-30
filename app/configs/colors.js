@@ -10,4 +10,6 @@ export default {
   pink: "#FF87A2",
   voile: "#442CB9",
   body: "rgba(12, 13, 52, 0.7)",
+  gray: "#F4F0EF",
+  lightBlue: "#BFEAF5",
 };
