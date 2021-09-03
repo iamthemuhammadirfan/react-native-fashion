@@ -3,12 +3,12 @@ import { StyleSheet, TouchableOpacity, View } from "react-native";
 
 import AppText from "components/AppText";
 import configs from "configs";
-import AppTapHandler from "./AppTapHandler";
+import AppTapHandler from "components/AppTapHandler";
 
 const INNER_RADIUS = 30;
 const OUTER_RADIUS = 34;
 
-export default function AppCategory({ id, color, title }) {
+export default function AppHomeCategory({ id, color, title }) {
   const [selected, setSelected] = useState(false);
 
   return (

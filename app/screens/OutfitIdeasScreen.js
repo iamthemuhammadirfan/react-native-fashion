@@ -3,11 +3,11 @@ import { StyleSheet, Text, View } from "react-native";
 
 import configs from "configs";
 import AppHeader from "components/AppHeader";
-import AppBackground from "components/home/AppBackground";
-import AppCard from "components/home/AppCard";
+import AppHomeBackground from "components/home/AppHomeBackground";
+import AppHomeCard from "components/home/AppHomeCard";
 import { useTransition } from "react-native-redash/lib/module/v1";
 import { sub } from "react-native-reanimated";
-import AppCategories from "components/home/AppCategories";
+import AppHomeCategories from "components/home/AppHomeCategories";
 
 const cards = [
   { index: 3, source: require("assets/images/4.png") },
@@ -27,13 +27,13 @@ export default function OutfitIdeasScreen({ navigation }) {
         left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
         right={{ icon: "shopping-bag", onPress: () => true }}
       />
-      <AppCategories />
+      <AppHomeCategories />
       <View style={styles.container}>
-        <AppBackground />
+        <AppHomeBackground />
         {cards.map(
           ({ index, source }) =>
             currentIndex < index * step + step && (
-              <AppCard
+              <AppHomeCard
                 key={index}
                 position={sub(index * step, aIndex)}
                 onSwipe={() => setCurrentIndex(prev => prev + step)}

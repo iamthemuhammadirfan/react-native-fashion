@@ -1,7 +1,7 @@
 import React from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
-import AppCategory from "./AppCategory";
+import AppHomeCategory from "./AppHomeCategory";
 
 const categories = [
   {
@@ -31,12 +31,12 @@ const categories = [
   },
 ];
 
-export default function AppCategories() {
+export default function AppHomeCategories() {
   return (
     <View>
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
         {categories.map((item, index) => (
-          <AppCategory key={index} color={item.color} title={item.title} />
+          <AppHomeCategory key={index} color={item.color} title={item.title} />
         ))}
       </ScrollView>
     </View>

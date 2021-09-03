@@ -4,13 +4,13 @@ export default [
   {
     icon: "zap",
     label: "Outfit Ideas",
-    screen: "OutfitIdeas",
+    screen: "OutfitIdeasScreen",
     color: configs.colors.primary,
   },
   {
     icon: "heart",
     label: "Favorite Outfits",
-    screen: "FavoriteOutfits",
+    screen: "FavoriteOutfitsScreen",
     color: configs.colors.oragne,
   },
   {

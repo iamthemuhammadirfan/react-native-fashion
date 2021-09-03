@@ -19,7 +19,7 @@ const { width: wWidth } = Dimensions.get("window");
 const width = wWidth * 0.7;
 const height = width * (425 / 294);
 
-export default function AppCard({ position, style, image, onSwipe, step }) {
+export default function AppHomeCard({ position, style, image, onSwipe, step }) {
   const { gestureHandler, translation, velocity, state } =
     usePanGestureHandler();
   const backgroundColor = mixColor(position, "#C9E9E7", "#74BCB8");

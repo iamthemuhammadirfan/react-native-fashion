@@ -5,9 +5,9 @@ import AppText from "components/AppText";
 import AppRoundedIcon from "components/AppRoundedIcon";
 import configs from "configs";
 
-export default function AppDrawerItem({ color, icon, label, screen }) {
+export default function AppDrawerItem({ color, icon, label, onPress }) {
   return (
-    <TouchableOpacity activeOpacity={0.8}>
+    <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
       <View style={styles.container}>
         <AppRoundedIcon
           name={icon}

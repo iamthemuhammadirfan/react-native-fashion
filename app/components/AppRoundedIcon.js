@@ -8,8 +8,8 @@ export default function AppRoundedIcon({
   size,
   color,
   backgroundColor,
-  iconRatio,
-  align,
+  iconRatio = 0.7,
+  align = "center",
 }) {
   const iconSize = size * iconRatio;
   return (

@@ -2,7 +2,7 @@ import configs from "configs";
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-export default function AppBackground() {
+export default function AppHomeBackground() {
   return (
     <View style={styles.container}>
       <View

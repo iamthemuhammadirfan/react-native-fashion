@@ -42,6 +42,7 @@ export default function AppDrawer({ navigation }) {
               label={item.label}
               icon={item.icon}
               color={item.color}
+              onPress={() => item.screen && navigation.navigate(item.screen)}
             />
           ))}
         </View>
