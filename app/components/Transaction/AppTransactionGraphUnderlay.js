@@ -5,6 +5,8 @@ import AppText from "components/AppText";
 import configs from "configs";
 import { lerp } from "utils/Helper";
 
+const ROW_HEIGHT = 16;
+
 export default function AppTransactionGraphUnderlay({
   dates,
   minY,
@@ -12,52 +14,36 @@ export default function AppTransactionGraphUnderlay({
   step,
 }) {
   return (
-    <View style={{ ...StyleSheet.absoluteFill }}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "space-between",
-        }}>
+    <View style={styles.container}>
+      <View style={styles.columnContainer}>
         {[1, 0.66, 0.33, 0].map((item, index) => (
           <View
             key={index}
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              height: 16,
-              top: item === 0 ? 16 / 2 : item === 1 ? -16 / 2 : 0,
-            }}>
-            <View
-              style={{
-                width: configs.spacing.xl,
-                paddingRight: configs.spacing.s,
-              }}>
-              <AppText
-                style={{ color: configs.colors.darkGrey, textAlign: "right" }}>
+            style={[
+              styles.columnRow,
+              {
+                top:
+                  item === 0
+                    ? ROW_HEIGHT / 2
+                    : item === 1
+                    ? -ROW_HEIGHT / 2
+                    : 0,
+              },
+            ]}>
+            <View style={styles.column}>
+              <AppText style={styles.columnText}>
                 {Math.round(lerp(minY, maxY, item))}
               </AppText>
             </View>
 
-            <View
-              style={{
-                backgroundColor: configs.colors.grey,
-                height: 1,
-                flex: 1,
-              }}
-            />
+            <View style={styles.line} />
           </View>
         ))}
       </View>
-      <View
-        style={{
-          marginLeft: configs.spacing.xl,
-          height: configs.spacing.xl,
-          flexDirection: "row",
-          alignItems: "center",
-        }}>
+      <View style={styles.rowContainer}>
         {dates.map((item, index) => (
           <View key={index} style={{ width: step, alignItems: "center" }}>
-            <AppText style={{ color: configs.colors.darkGrey }}>
+            <AppText style={styles.rowText}>
               {Intl.DateTimeFormat("en", { month: "short" }).format(
                 new Date(item),
               )}
@@ -69,4 +55,32 @@ export default function AppTransactionGraphUnderlay({
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: { ...StyleSheet.absoluteFill },
+  column: {
+    width: configs.spacing.xl,
+    paddingRight: configs.spacing.s,
+  },
+  columnContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+  },
+  columnRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    height: ROW_HEIGHT,
+  },
+  columnText: { color: configs.colors.darkGrey, textAlign: "right" },
+  line: {
+    backgroundColor: configs.colors.grey,
+    height: 1,
+    flex: 1,
+  },
+  rowContainer: {
+    marginLeft: configs.spacing.xl,
+    height: configs.spacing.xl,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  rowText: { color: configs.colors.darkGrey },
+});

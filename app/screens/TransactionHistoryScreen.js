@@ -1,10 +1,19 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Dimensions,
+  Image,
+  PixelRatio,
+} from "react-native";
 
 import AppHeader from "components/AppHeader";
 import configs from "configs";
 import AppText from "components/AppText";
 import AppTransactionGraph from "components/Transaction/AppTransactionGraph";
+import AppTransactionHistory from "components/Transaction/AppTransactionHistory";
+import AppTopCurve from "components/AppTopCurve";
 
 const graphData = [
   {
@@ -19,8 +28,9 @@ const graphData = [
     value: 281.23,
     color: configs.colors.oragne,
   },
+
   {
-    id: 245677,
+    id: 245676,
     date: new Date("2020-01-02").getTime(),
     value: 198.54,
     color: configs.colors.yellow,
@@ -32,27 +42,30 @@ const graphData = [
     color: configs.colors.danger,
   },
   {
-    id: 2456377,
+    id: 245678,
     date: new Date("2020-03-01").getTime(),
     value: 208.54,
     color: configs.colors.inputPristine,
   },
   {
-    id: 2415677,
+    id: 245679,
     date: new Date("2020-04-03").getTime(),
     value: 258.54,
     color: configs.colors.voile,
   },
   {
-    id: 2451677,
+    id: 245680,
     date: new Date("2020-05-10").getTime(),
     value: 158.54,
     color: configs.colors.body,
   },
 ];
 
+const FOOTER_HEIGHT = PixelRatio.roundToNearestPixel(
+  Dimensions.get("window").width / 3,
+);
+
 export default function TransactionHistoryScreen({ navigation }) {
-  console.log(graphData);
   return (
     <View style={styles.screen}>
       <AppHeader
@@ -71,6 +84,22 @@ export default function TransactionHistoryScreen({ navigation }) {
           </View>
         </View>
         <AppTransactionGraph data={graphData} />
+        <ScrollView
+          contentContainerStyle={{
+            paddingBottom: FOOTER_HEIGHT * graphData.length,
+          }}
+          showsVerticalScrollIndicator={false}>
+          {graphData.map((item, index) => (
+            <AppTransactionHistory key={index} transaction={item} />
+          ))}
+        </ScrollView>
+      </View>
+      <AppTopCurve height={FOOTER_HEIGHT} />
+      <View style={styles.footer}>
+        <Image
+          source={require("assets/images/drawer.png")}
+          style={styles.footerImage}
+        />
       </View>
     </View>
   );
@@ -84,6 +113,19 @@ const styles = StyleSheet.create({
   },
   buttonColor: {
     color: configs.colors.primary,
+  },
+  footer: {
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+    right: 0,
+    height: FOOTER_HEIGHT,
+  },
+  footerImage: {
+    ...StyleSheet.absoluteFillObject,
+    width: undefined,
+    height: undefined,
+    borderTopLeftRadius: configs.borderRadius.xl,
   },
   main: {
     padding: configs.spacing.m,

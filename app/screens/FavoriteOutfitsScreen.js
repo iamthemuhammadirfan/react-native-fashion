@@ -6,7 +6,7 @@ import configs from "configs";
 import AppHeader from "components/AppHeader";
 import AppOutfitFooter from "components/Outfits/AppOutfitFooter";
 import AppOutfit from "components/Outfits/AppOutfit";
-import AppTopCurve from "components/Outfits/AppTopCurve";
+import AppTopCurve from "components/AppTopCurve";
 
 const defaultOutfits = [
   { id: 0, color: "#BFEAF5", aspectRatio: 1, selected: false },
@@ -26,7 +26,8 @@ const width = (wWidth - configs.spacing.m * 3) / 2;
 export default function FavoriteOutfitsScreen({ navigation }) {
   const transition = (
     <Transition.Together>
-      <Transition.Change interpolation="easeInOut" durationMs={1000} />
+      <Transition.Out type="slide-bottom" />
+      <Transition.In type="scale" />
     </Transition.Together>
   );
 
@@ -51,14 +52,14 @@ export default function FavoriteOutfitsScreen({ navigation }) {
             <View style={styles.content}>
               <View style={{ marginRight: configs.spacing.m }}>
                 {outfits
-                  .filter(_ => _.id % 2 !== 0)
+                  .filter((_, index) => index % 2 !== 0)
                   .map(item => (
                     <AppOutfit key={item.id} outfit={item} width={width} />
                   ))}
               </View>
               <View>
                 {outfits
-                  .filter(_ => _.id % 2 === 0)
+                  .filter((_, index) => index % 2 === 0)
                   .map(item => (
                     <AppOutfit key={item.id} outfit={item} width={width} />
                   ))}
