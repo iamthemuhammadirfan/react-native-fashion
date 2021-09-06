@@ -15,6 +15,7 @@ module.exports = {
           layouts: "./app/layouts",
           configs: "./app/configs",
           icons: "./app/icons",
+          utils: "./app/utils",
         },
       },
     ],

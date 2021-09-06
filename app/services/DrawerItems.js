@@ -22,7 +22,7 @@ export default [
   {
     icon: "clock",
     label: "Transaction History",
-    screen: "TransactionHistory",
+    screen: "TransactionHistoryScreen",
     color: configs.colors.pink,
   },
   {
