@@ -8,7 +8,6 @@ import AppAuthFooter from "components/Auth/AppAuthFooter";
 import AppText from "components/AppText";
 import AppAuthTextInput from "components/Auth/AppAuthTextInput";
 import configs from "configs";
-import AppCheckbox from "components/AppCheckbox";
 import AppButton from "components/AppButton";
 
 const signupSchema = Yup.object().shape({

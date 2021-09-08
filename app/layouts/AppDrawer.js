@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 0.15,
   },
   headerContainer: {
-    flex: 0.15,
+    flex: 0.2,
     backgroundColor: configs.colors.white,
   },
   headerOverlay: {
@@ -120,5 +120,6 @@ const styles = StyleSheet.create({
     fontSize: 28,
     color: configs.colors.secondary,
     textAlign: "center",
+    fontWeight: "bold",
   },
 });

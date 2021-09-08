@@ -16,7 +16,7 @@ export default [
   {
     icon: "user",
     label: "Edit Profile",
-    screen: "EditProfile",
+    screen: "EditProfileScreen",
     color: configs.colors.yellow,
   },
   {

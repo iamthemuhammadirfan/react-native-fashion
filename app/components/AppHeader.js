@@ -20,14 +20,18 @@ export default function AppHeader({ right, left, title, dark }) {
       <AppText style={{ color, fontSize: 16, fontWeight: "bold" }}>
         {title.toUpperCase()}
       </AppText>
-      <AppIconButton
-        icon={right.icon}
-        color={color}
-        size={30}
-        backgroundColor={backgroundColor}
-        onPress={right.onPress}
-        dark={dark}
-      />
+      {right ? (
+        <AppIconButton
+          icon={right.icon}
+          color={color}
+          size={30}
+          backgroundColor={backgroundColor}
+          onPress={right.onPress}
+          dark={dark}
+        />
+      ) : (
+        <View style={{ width: 40 }} />
+      )}
     </View>
   );
 }

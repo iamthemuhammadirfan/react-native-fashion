@@ -1,5 +1,13 @@
-import React from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { StyleSheet, View, Dimensions } from "react-native";
+// import { Transitioning, Transition } from "react-native-reanimated";
+import { useFocusEffect } from "@react-navigation/native";
+
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
 import configs from "configs";
 import { lerp } from "utils/Helper";
@@ -9,6 +17,11 @@ const { width: wWidth } = Dimensions.get("window");
 const aspectRatio = 195 / 305;
 
 export default function AppTransactionGraph({ data }) {
+  const transition = useSharedValue(0);
+  useFocusEffect(() => {
+    transition.value = withTiming(1, { duration: 650 });
+    return () => (transition.value = 0);
+  });
   const canvasWidth = wWidth - configs.spacing.m * 2;
   const canvasHeight = canvasWidth * aspectRatio;
   const width = canvasWidth - configs.spacing.xl;
@@ -21,6 +34,7 @@ export default function AppTransactionGraph({ data }) {
   const maxX = Math.max(...dates);
   const minY = Math.min(...values);
   const maxY = Math.max(...values);
+
   return (
     <View style={styles.container}>
       <AppTransactionGraphUnderlay
@@ -29,29 +43,38 @@ export default function AppTransactionGraph({ data }) {
         maxY={maxY}
         step={step}
       />
-      <View
-        style={{
-          width,
-          height,
-        }}>
+      <View style={{ width, height, overflow: "hidden" }}>
         {data.map((item, index) => {
           if (item.value === 0) return null;
 
+          const totalHeight = lerp(0, height, item.value / maxY);
+
+          const style = useAnimatedStyle(() => {
+            const currentHeight = totalHeight * transition.value;
+            const translateY = (totalHeight - currentHeight) / 2;
+            return {
+              transform: [{ translateY }, { scaleY: transition.value }],
+            };
+          });
+
           return (
-            <View
-              style={{
-                position: "absolute",
-                width: step,
-                height: lerp(0, height, item.value / maxY),
-                left: index * step,
-                bottom: 0,
-              }}
+            <Animated.View
+              style={[
+                {
+                  position: "absolute",
+                  width: step,
+                  height: totalHeight,
+                  left: index * step,
+                  bottom: 0,
+                },
+                style,
+              ]}
               key={index}>
               <View style={[styles.graph, { backgroundColor: item.color }]} />
               <View
                 style={[styles.graphValue, { backgroundColor: item.color }]}
               />
-            </View>
+            </Animated.View>
           );
         })}
       </View>
