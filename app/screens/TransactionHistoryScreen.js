@@ -14,6 +14,7 @@ import AppText from "components/AppText";
 import AppTransactionGraph from "components/Transaction/AppTransactionGraph";
 import AppTransactionHistory from "components/Transaction/AppTransactionHistory";
 import AppTopCurve from "components/AppTopCurve";
+import AppTransactionContent from "components/Transaction/AppTransactionContent";
 
 const graphData = [
   {
@@ -67,41 +68,36 @@ const FOOTER_HEIGHT = PixelRatio.roundToNearestPixel(
 
 export default function TransactionHistoryScreen({ navigation }) {
   return (
-    <View style={styles.screen}>
-      <AppHeader
-        title="Transaction History"
-        left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
-        right={{ icon: "shopping-bag", onPress: () => true }}
-      />
-      <View style={styles.main}>
-        <View style={styles.topBar}>
-          <View>
-            <AppText style={styles.priceTitle}>Total Spent</AppText>
-            <AppText style={styles.price}>$619,19</AppText>
-          </View>
-          <View style={styles.button}>
-            <AppText style={styles.buttonColor}>All time</AppText>
-          </View>
-        </View>
-        <AppTransactionGraph data={graphData} />
-        <ScrollView
-          contentContainerStyle={{
-            paddingBottom: FOOTER_HEIGHT * graphData.length,
-          }}
-          showsVerticalScrollIndicator={false}>
-          {graphData.map((item, index) => (
-            <AppTransactionHistory key={index} transaction={item} />
-          ))}
-        </ScrollView>
-      </View>
-      <AppTopCurve height={FOOTER_HEIGHT} />
-      <View style={styles.footer}>
-        <Image
-          source={require("assets/images/drawer.png")}
-          style={styles.footerImage}
+    <AppTransactionContent>
+      <View style={styles.screen}>
+        <AppHeader
+          title="Transaction History"
+          left={{ icon: "menu", onPress: () => navigation.openDrawer() }}
+          right={{ icon: "shopping-bag", onPress: () => true }}
         />
+        <View style={styles.main}>
+          <View style={styles.topBar}>
+            <View>
+              <AppText style={styles.priceTitle}>Total Spent</AppText>
+              <AppText style={styles.price}>$619,19</AppText>
+            </View>
+            <View style={styles.button}>
+              <AppText style={styles.buttonColor}>All time</AppText>
+            </View>
+          </View>
+          <AppTransactionGraph data={graphData} />
+          <ScrollView
+            contentContainerStyle={{
+              paddingBottom: FOOTER_HEIGHT * (graphData.length / 2),
+            }}
+            showsVerticalScrollIndicator={false}>
+            {graphData.map((item, index) => (
+              <AppTransactionHistory key={index} transaction={item} />
+            ))}
+          </ScrollView>
+        </View>
       </View>
-    </View>
+    </AppTransactionContent>
   );
 }
 
@@ -113,19 +109,6 @@ const styles = StyleSheet.create({
   },
   buttonColor: {
     color: configs.colors.primary,
-  },
-  footer: {
-    position: "absolute",
-    left: 0,
-    bottom: 0,
-    right: 0,
-    height: FOOTER_HEIGHT,
-  },
-  footerImage: {
-    ...StyleSheet.absoluteFillObject,
-    width: undefined,
-    height: undefined,
-    borderTopLeftRadius: configs.borderRadius.xl,
   },
   main: {
     padding: configs.spacing.m,

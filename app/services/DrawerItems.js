@@ -28,7 +28,7 @@ export default [
   {
     icon: "settings",
     label: "Notification Settings",
-    screen: "Settings",
+    screen: "SettingsScreen",
     color: configs.colors.voile,
   },
   {

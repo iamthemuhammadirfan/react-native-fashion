@@ -5,6 +5,7 @@ import OutfitIdeasScreen from "screens/OutfitIdeasScreen";
 import FavoriteOutfitsScreen from "screens/FavoriteOutfitsScreen";
 import TransactionHistoryScreen from "screens/TransactionHistoryScreen";
 import EditProfileScreen from "screens/EditProfileScreen";
+import SettingsScreen from "screens/SettingsScreen";
 import AppDrawer, { DRAWER_WIDTH } from "layouts/AppDrawer";
 
 const Drawer = createDrawerNavigator();
@@ -12,7 +13,7 @@ const Drawer = createDrawerNavigator();
 export default function HomeNavigator() {
   return (
     <Drawer.Navigator
-      initialRouteName="OutfitIdeasScreen"
+      initialRouteName="SettingsScreen"
       drawerContent={props => <AppDrawer {...props} />}
       screenOptions={{
         headerShown: false,
@@ -31,6 +32,7 @@ export default function HomeNavigator() {
         component={TransactionHistoryScreen}
       />
       <Drawer.Screen name="EditProfileScreen" component={EditProfileScreen} />
+      <Drawer.Screen name="SettingsScreen" component={SettingsScreen} />
     </Drawer.Navigator>
   );
 }
